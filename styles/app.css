@@ -1,0 +1,12 @@
+:root{
+    --background-color: #16122a;
+    --white-color: #ffffff;
+    --icons-color:#5933c8;
+    --text-color:#8d8b97;
+}
+body{
+    background-color: var(--background-color);
+    font-family: "Montserrat", sans-serif;
+    color: var(--text-color);
+    
+}
