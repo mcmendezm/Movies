@@ -129,5 +129,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# private.js (API KEY)
-src/private.js
+# secrets.js (API KEY)
+src/secrets.js
