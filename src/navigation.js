@@ -67,7 +67,7 @@ function categoriesPage() {
 
   const [endpoint, categoryData ]  = location.hash.split('=');
   const [id, categoryName] = categoryData.split('-');
-  console.log({categoryData, id, categoryName})
+  
   headerCategoryTitle.innerHTML = categoryName;
   getMoviesByCategory(id);
   
@@ -87,7 +87,9 @@ function movieDetailsPage() {
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.add('inactive');
-    movieDetailSection.classList.remove('inactive');
+  movieDetailSection.classList.remove('inactive');
+  const [endpoint, movieId] = location.hash.split('=');
+  getMoviesById(movieId)
 }
 
 function searchPage() {
