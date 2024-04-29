@@ -59,8 +59,7 @@ h3 {
 
 /* Input */
 input {
-  background-color: var(--text-color);
-  opacity: 20%;
+  background-color: #8d8b9750;
   color: var(--white-color);
   border: none;
   font-size: 18px;
@@ -68,7 +67,7 @@ input {
 }
 
 input::placeholder {
-  color: var(--text-color);
+  color: var(--icons-color);
 }
 
 /* Button */
@@ -175,6 +174,8 @@ footer {
   width: 100%;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
+  color: var(--white-color);
+  
 }
 
 .header-searchForm button {
