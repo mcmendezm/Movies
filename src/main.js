@@ -17,6 +17,15 @@ function createMovies(movies, container) {
       location.hash=`#movie=${movie.id}`
     })
 
+    function mostrarEstrellas(vote_average) {
+    let estrellasLlenas = Math.round(vote_average / 2);
+    let estrellasVacias = 5 - estrellasLlenas;
+
+    let estrellas = '★'.repeat(estrellasLlenas) + '☆'.repeat(estrellasVacias);
+
+    return estrellas;
+}
+
     const movieImg = document.createElement('img');
     movieImg.classList.add('movie-img');
     movieImg.setAttribute('alt', movie.title);
@@ -24,28 +33,40 @@ function createMovies(movies, container) {
       'src',
       'https://image.tmdb.org/t/p/w300' + movie.poster_path,
     );
+    const movieTitle = document.createElement('h5');
+    movieTitle.classList.add('movieTitle')
+    movieTitle.innerHTML = movie.title;
+    const movieCalification = document.createElement('div');
+    const vote_average= movie.vote_average
+    movieCalification.innerHTML = mostrarEstrellas(vote_average);
+    movieCalification.classList.add('movieCalification');
 
     movieContainer.appendChild(movieImg);
+    movieContainer.appendChild(movieTitle);
+    movieContainer.appendChild(movieCalification)
     container.appendChild(movieContainer);
 
   })
 }
 function createCategories(categories, container) {
   container.innerHTML = "";
-    categories.forEach(category => {
+  categories.forEach(category => {
     
     const categoryContainer = document.createElement('div');
     categoryContainer.classList.add('category-container');
 
     const categoryTitle = document.createElement('h3');
     categoryTitle.classList.add('category-title');
-      categoryTitle.setAttribute('id', 'id' + category.id);
+    categoryTitle.setAttribute('id', 'id' + category.id);
+    const categoryImg = document.createElement('img');
+    categoryImg.setAttribute('src', `./img/${category.name}.png`)
       categoryTitle.addEventListener('click', () => {
         location.hash=`#category=${category.id}-${category.name}`
       })
     const categoryTitleText = document.createTextNode(category.name);
 
     categoryTitle.appendChild(categoryTitleText);    
+    categoryContainer.appendChild(categoryImg);
     categoryContainer.appendChild(categoryTitle);
     container.appendChild(categoryContainer);
   });
@@ -106,7 +127,7 @@ async function getMoviesById(id) {
 
   movieDetailTitle.textContent = movie.title;
   movieDetailDescription.textContent =movie.overview;
-  movieDetailScore.textContent = movie.vote_average;
+  movieDetailScore.textContent = (movie.vote_average * 10).toFixed(1) + "%";;
 
   createCategories(movie.genres, movieDetailCategoriesList);
   getRelatedMoviesId(id)
