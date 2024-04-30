@@ -138,52 +138,71 @@ function trendsPage() {
 
 // CARRUSEL
 document.addEventListener('DOMContentLoaded', function () {
-  var slideIndex = 0;
-  var slides = document.querySelectorAll('.carousel-slide img');
-  var dotsContainer = document.querySelector('.carousel-dots');
-  var dots = [];
+  const carousel = document.querySelector('.carousel-slide');
+  const slides = carousel.querySelectorAll('img');
+  const totalSlides = slides.length;
+  const dotsContainer = document.querySelector('.carousel-dots');
+  let slideIndex = 0;
+  let intervalId;
+
+  // Oculta todas las imágenes excepto la primera
+  slides.forEach((slide, index) => {
+    if (index !== slideIndex) {
+      slide.style.display = 'none';
+    }
+  });
 
   // Crea los puntos de navegación
-  slides.forEach(function (_, index) {
-    var dot = document.createElement('span');
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('span');
     dot.classList.add('carousel-dot');
+    dot.dataset.index = i;
     dotsContainer.appendChild(dot);
-    dots.push(dot);
 
     // Agrega evento click a los puntos para navegar a la imagen correspondiente
     dot.addEventListener('click', function () {
-      showSlide(index);
+      showSlide(parseInt(this.dataset.index));
     });
-  });
+  }
 
-  // Muestra la diapositiva inicial
-  showSlide(slideIndex);
+  // Activa el punto correspondiente a la imagen actual
+  dotsContainer.children[slideIndex].classList.add('active');
 
   // Función para mostrar una diapositiva específica
   function showSlide(index) {
-    if (index < 0) {
-      index = slides.length - 1;
-    } else if (index >= slides.length) {
-      index = 0;
+    if (index < 0 || index >= totalSlides || index === slideIndex) {
+      return;
     }
 
+    // Oculta la imagen actual y muestra la nueva imagen
+    slides[slideIndex].style.display = 'none';
+    slides[index].style.display = 'block';
+
+    // Actualiza la clase active en los puntos de navegación
+    dotsContainer.children[slideIndex].classList.remove('active');
+    dotsContainer.children[index].classList.add('active');
+
     slideIndex = index;
-
-    // Oculta todas las imágenes y desactiva todos los puntos
-    slides.forEach(function (slide) {
-      slide.style.display = 'none';
-    });
-    dots.forEach(function (dot) {
-      dot.classList.remove('active');
-    });
-
-    // Muestra la imagen correspondiente y activa el punto correspondiente
-    slides[slideIndex].style.display = 'block';
-    dots[slideIndex].classList.add('active');
   }
 
-  // Cambia de diapositiva cada 3 segundos
-  setInterval(function () {
-    showSlide(slideIndex + 1);
-  }, 3000);
+  // Función para avanzar automáticamente las diapositivas cada 3 segundos
+  function startCarousel() {
+    intervalId = setInterval(() => {
+      const nextIndex = (slideIndex + 1) % totalSlides;
+      showSlide(nextIndex);
+    }, 3000);
+  }
+
+  // Inicia el carrusel
+  startCarousel();
+
+  // Detiene el carrusel cuando el mouse está sobre el carrusel
+  carousel.addEventListener('mouseenter', () => {
+    clearInterval(intervalId);
+  });
+
+  // Reinicia el carrusel cuando el mouse sale del carrusel
+  carousel.addEventListener('mouseleave', () => {
+    startCarousel();
+  });
 });
