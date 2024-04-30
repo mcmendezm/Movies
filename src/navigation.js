@@ -39,7 +39,8 @@ function homePage() {
     arrowBtn.classList.add('inactive');
     headerTitle.classList.remove('inactive');
     headerCategoryTitle.classList.add('inactive');
-    searchForm.classList.remove('inactive');
+  searchForm.classList.remove('inactive');
+  containerCarousel.classList.remove('inactive');
 
     trendingPreviewSection.classList.remove('inactive');
     categoriesPreviewSection.classList.remove('inactive');
@@ -58,7 +59,8 @@ function categoriesPage() {
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.remove('inactive');
-    searchForm.classList.add('inactive');
+  searchForm.classList.add('inactive');
+  containerCarousel.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -82,7 +84,8 @@ function movieDetailsPage() {
     arrowBtn.classList.add('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
-    searchForm.classList.add('inactive');
+  searchForm.classList.add('inactive');
+  containerCarousel.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -100,7 +103,8 @@ function searchPage() {
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.add('inactive');
-    searchForm.classList.remove('inactive');
+  searchForm.classList.remove('inactive');
+  containerCarousel.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -118,7 +122,8 @@ function trendsPage() {
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
     headerCategoryTitle.classList.remove('inactive');
-    searchForm.classList.add('inactive');
+  searchForm.classList.add('inactive');
+  containerCarousel.classList.add('inactive');
 
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
@@ -127,3 +132,57 @@ function trendsPage() {
   headerCategoryTitle.innerHTML = "Tendencias";
   getTrendingMovies();
 }
+
+
+
+// CARRUSEL
+document.addEventListener('DOMContentLoaded', function () {
+  var slideIndex = 0;
+  var slides = document.querySelectorAll('.carousel-slide img');
+  var dotsContainer = document.querySelector('.carousel-dots');
+  var dots = [];
+
+  // Crea los puntos de navegación
+  slides.forEach(function (_, index) {
+    var dot = document.createElement('span');
+    dot.classList.add('carousel-dot');
+    dotsContainer.appendChild(dot);
+    dots.push(dot);
+
+    // Agrega evento click a los puntos para navegar a la imagen correspondiente
+    dot.addEventListener('click', function () {
+      showSlide(index);
+    });
+  });
+
+  // Muestra la diapositiva inicial
+  showSlide(slideIndex);
+
+  // Función para mostrar una diapositiva específica
+  function showSlide(index) {
+    if (index < 0) {
+      index = slides.length - 1;
+    } else if (index >= slides.length) {
+      index = 0;
+    }
+
+    slideIndex = index;
+
+    // Oculta todas las imágenes y desactiva todos los puntos
+    slides.forEach(function (slide) {
+      slide.style.display = 'none';
+    });
+    dots.forEach(function (dot) {
+      dot.classList.remove('active');
+    });
+
+    // Muestra la imagen correspondiente y activa el punto correspondiente
+    slides[slideIndex].style.display = 'block';
+    dots[slideIndex].classList.add('active');
+  }
+
+  // Cambia de diapositiva cada 3 segundos
+  setInterval(function () {
+    showSlide(slideIndex + 1);
+  }, 3000);
+});

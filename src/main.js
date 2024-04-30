@@ -137,3 +137,18 @@ async function getRelatedMoviesId(id) {
   const relatedMovies = data.results;
   createMovies(relatedMovies, relatedMoviesContainer )
 }
+
+async function getImagesPopular() {
+  const { data } = await api(`movie/popular`);
+  const moviesPopular = data.results;
+  moviesPopular.forEach(movie => {
+    const movieImg = document.createElement('img');
+    movieImg.setAttribute(
+      'src',
+      'https://image.tmdb.org/t/p/w300' + movie.backdrop_path,
+      );
+    movieImg.setAttribute('alt', movie.title);
+    carousel.appendChild(movieImg);
+  })
+}
+getImagesPopular()

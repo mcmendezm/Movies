@@ -87,6 +87,7 @@ button {
 .box-logo{
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 }
 .header-container,
 .trendingPreview-header,
@@ -106,7 +107,7 @@ button {
 .trendingPreview-container,
 .categoriesPreview-container,
 footer {
-  margin-top: 48px;
+  margin-top: 28px;
 }
 
 .trendingPreview-header,
@@ -181,6 +182,7 @@ footer {
   width: 85%;
   flex-wrap: nowrap;
   margin: 0 auto;
+  margin-top: 40px;
 }
 
 .header-searchForm input {
@@ -371,4 +373,39 @@ footer {
 /* Inactive */
 .inactive {
   display: none;
+}
+/* carrusel*/
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.carousel-slide {
+  display: flex;
+}
+.carousel-slide img {
+  width: 100%;
+  display: none;
+  border-radius: 20px;
+}
+.carousel-slide img:first-child {
+  display: block;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.carousel-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #aaa;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 2px;
+  cursor: pointer;
+}
+.carousel-dot.active {
+  background-color: #333;
 }
