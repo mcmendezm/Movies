@@ -141,14 +141,17 @@ async function getRelatedMoviesId(id) {
 async function getImagesPopular() {
   const { data } = await api(`movie/popular`);
   const moviesPopular = data.results;
-  moviesPopular.forEach(movie => {
-    const movieImg = document.createElement('img');
-    movieImg.setAttribute(
-      'src',
-      'https://image.tmdb.org/t/p/w300' + movie.backdrop_path,
-      );
-    movieImg.setAttribute('alt', movie.title);
-    carousel.appendChild(movieImg);
-  })
+  const imagesPromises = moviesPopular.map(movie => {
+    return new Promise(resolve => {
+      const movieImg = new Image();
+      movieImg.onload = () => {
+        resolve(movieImg);
+      };
+      movieImg.src = 'https://image.tmdb.org/t/p/w300' + movie.backdrop_path;
+    });
+  });
+  return Promise.all(imagesPromises);
 }
-getImagesPopular()
+
+
+

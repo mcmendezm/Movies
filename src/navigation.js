@@ -137,11 +137,16 @@ function trendsPage() {
 
 
 // CARRUSEL
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
   const carousel = document.querySelector('.carousel-slide');
-  const slides = carousel.querySelectorAll('img');
-  const totalSlides = slides.length;
   const dotsContainer = document.querySelector('.carousel-dots');
+
+  const slides = await getImagesPopular();
+  slides.forEach(slide => {
+    carousel.appendChild(slide);
+  });
+
+  const totalSlides = slides.length;
   let slideIndex = 0;
   let intervalId;
 
