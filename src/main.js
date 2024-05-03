@@ -125,7 +125,32 @@ async function getMoviesByCategory(id) {
 
   createMovies(movies, genericSection, { lazyLoad: true });
 }
+function getPaginatedMoviesByCategory(id) {
+  return async function () {
+    const {
+    scrollTop,
+    scrollHeight,
+    clientHeight
+  } = document.documentElement;
+  
+  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
+  const pageIsNotMax = page < maxPage;
 
+  if (scrollIsBottom && pageIsNotMax) {
+    page++;
+      const { data } = await api('discover/movie', {
+    params: {
+          with_genres: id,
+      page,
+    },
+  });
+  const movies = data.results;
+  maxPage = data.total_pages;
+
+  createMovies(movies, genericSection, { lazyLoad: true, clean:false });
+  }
+}
+}
 function getPaginatedMoviesBySearch(query) {
   return async function () {
     const {
