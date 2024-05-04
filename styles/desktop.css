@@ -1,6 +1,9 @@
 html{
     background-color: blue;
 }
+body{
+    font-size: 20px;
+}
 .logo{
     width: 240px;
 }
@@ -18,4 +21,35 @@ html{
 }
 .header-searchForm{
     width: 60%;
+}
+h2{
+    font-size: 30px;
+    margin-bottom: 60px;
+    margin-top: 30px;
+}
+.trendingPreview-header,
+.liked-header{
+    margin: 0 100px;
+}
+.trendingPreview-btn{
+    font-size: 15px;
+    width: 90px;
+    height: 40px;
+}
+.trendingPreview-movieList,
+.liked-movieList {
+  height: 440px;
+
+}
+.trendingPreview-movieList .movie-container .movie-img, 
+ .liked-container .liked-movieList .movie-img {
+  height: 350px;
+  min-height: 350px;
+  max-height: 350px;
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+}
+.movieTitle{
+    max-width: 240px;
 }
