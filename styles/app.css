@@ -463,12 +463,14 @@ border-radius: 20px;
   min-width: 370px;
   margin-bottom: 10px;
   animation: loading-skeleton infinite 1.5s;
+  overflow: hidden;
 }
 .carousel-container {
   position: relative;
   width: 100%;
   overflow: hidden;
   margin: 0 auto;
+  overflow: hidden;
 }
 .carousel-slide {
   display: flex;
@@ -477,6 +479,7 @@ border-radius: 20px;
   width: 100%;
   display: none;
   border-radius: 20px;
+  object-fit: cover;
 }
 .carousel-slide img:first-child {
   display: block;

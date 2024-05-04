@@ -289,7 +289,7 @@ async function getImagesPopular() {
       movieImg.onload = () => {
         resolve(movieImg);
       };
-      movieImg.src = 'https://image.tmdb.org/t/p/w300' + movie.backdrop_path;
+      movieImg.src = 'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
     });
   });
   return Promise.all(imagesPromises);
