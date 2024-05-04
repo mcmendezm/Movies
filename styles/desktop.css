@@ -56,3 +56,13 @@ h2{
 .genericList-container .movie-container{
     width: 22%;
 }
+.movie-container--loading{
+  height: 340px;
+  min-height: 340px;
+  max-height: 340px;
+  width: 250px;
+  max-width: 250px;
+  min-width: 250px;
+  margin-bottom: 40px;
+  margin-right: 25px;
+}
