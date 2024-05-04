@@ -1,6 +1,3 @@
-html{
-    background-color: red;
-}
 body{
     font-size: 18px;
 }
@@ -50,9 +47,7 @@ h2{
   min-width: 200px;
   max-width: 200px;
 }
-.movieTitle{
-    max-width: 190px;
-}
+
 .genericList-container .movie-container{
     width: 35%;
 }
@@ -68,4 +63,10 @@ h2{
 }
 .category-container{
     width: 25%;
+}
+.header-container--long {
+    height: 650px;
+}
+.movieDetail-container {
+  margin-top: 500px;
 }
