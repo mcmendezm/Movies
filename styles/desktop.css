@@ -1,0 +1,21 @@
+html{
+    background-color: blue;
+}
+.logo{
+    width: 240px;
+}
+.caroussel-container--loading{
+  height: 400px;
+  min-height: 300px;
+  max-height: 500px;
+  width: 1200px;
+  max-width: 1200px;
+  min-width: 700px;
+  margin-bottom: 10px;
+}
+.carousel-dots {
+  bottom: 20px;
+}
+.header-searchForm{
+    width: 60%;
+}

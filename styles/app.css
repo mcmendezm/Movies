@@ -456,9 +456,9 @@ background: #8d8b9720;
 border-radius: 20px;
   height: 200px;
   min-height: 200px;
-  max-height: 200px;
+  max-height: 320px;
   width: 370px;
-  max-width: 370px;
+  max-width: 470px;
   min-width: 370px;
   margin-bottom: 10px;
   animation: loading-skeleton infinite 1.5s;
@@ -467,6 +467,7 @@ border-radius: 20px;
   position: relative;
   width: 100%;
   overflow: hidden;
+  margin: 0 auto;
 }
 .carousel-slide {
   display: flex;
