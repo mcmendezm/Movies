@@ -334,7 +334,7 @@ animation: loading-skeleton infinite 1.5s;
 .genericList-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   padding: 32px 24px;
 }

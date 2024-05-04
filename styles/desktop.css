@@ -53,3 +53,6 @@ h2{
 .movieTitle{
     max-width: 240px;
 }
+.genericList-container .movie-container{
+    width: 22%;
+}
