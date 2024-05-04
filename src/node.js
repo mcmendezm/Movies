@@ -30,3 +30,6 @@ const movieDetailScore = document.querySelector('.movieDetail-score');
 const input = document.querySelector('.input');
 const containerCarousel = document.querySelector('.carousel-container');
 const carousel = document.querySelector('.carousel-slide');
+
+const likedContainer = document.querySelector('.liked-container');
+const likedMoviesListArticle= document.querySelector('.liked-movieList')
