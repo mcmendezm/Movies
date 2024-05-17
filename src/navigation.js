@@ -20,7 +20,6 @@ window.addEventListener('hashchange', navigator, false);
 window.addEventListener('scroll', infiniteScroll, false);
 
 function navigator() {
-  console.log({ location });
   if (infiniteScroll) {
     window.removeEventListener('scroll', infiniteScroll, {passive:false});
     infiniteScroll = undefined;
@@ -166,10 +165,10 @@ document.addEventListener('DOMContentLoaded', async function () {
   slides.forEach(slide => {
     carousel.appendChild(slide);
   });
-
   const totalSlides = slides.length;
   let slideIndex = 0;
   let intervalId;
+  console.log(totalSlides)
 
   // Oculta todas las imágenes excepto la primera
   slides.forEach((slide, index) => {
@@ -190,7 +189,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       showSlide(parseInt(this.dataset.index));
     });
   }
-
   // Activa el punto correspondiente a la imagen actual
   dotsContainer.children[slideIndex].classList.add('active');
 

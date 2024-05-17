@@ -78,7 +78,7 @@ function createMovies(
     movieImg.addEventListener('error', () => {
       movieImg.setAttribute(
         'src',
-        '../img/error.png')
+        './img/error.png')
     })
     const movieTitle = document.createElement('h5');
     movieTitle.classList.add('movieTitle')
@@ -284,10 +284,15 @@ async function getImagesPopular() {
   const { data } = await api(`movie/popular`);
   const moviesPopular = data.results;
   const imagesPromises = moviesPopular.map(movie => {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       const movieImg = new Image();
       movieImg.onload = () => {
+        console.log('Imagen cargada:', movieImg.src);
         resolve(movieImg);
+      };
+      movieImg.onerror = (error) => {
+        console.error('Error al cargar la imagen:', error);
+        reject(error);
       };
       movieImg.src = 'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
     });
@@ -299,5 +304,4 @@ function getLikedMovies() {
   const likedMovies = likedMoviesList();
   const moviesArray = Object.values(likedMovies)
   createMovies(moviesArray, likedMoviesListArticle, {lazyLoad: true, clean:true})
-console.log(likedMovies)
 }
